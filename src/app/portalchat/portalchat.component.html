@@ -1,0 +1,49 @@
+<form class="max-w-md mx-auto p-6 bg-white rounded shadow border-blue-500 border-3" (submit)="onSubmit($event)">
+  <div class="border-blue-500 border-3">
+    <div class="mb-4 border-blue-500">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Destinatario:</label>
+      <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="from" type="text" placeholder="Ingrese su nombre" [(ngModel)]="from" name="from">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Mail:</label>
+      <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="email" type="email" placeholder="Ingrese su email" [(ngModel)]="email" name="email">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">TextoMail:</label>
+      <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500" id="emailBody" type="tel" placeholder="Ingrese el texto del mail" [(ngModel)]="emailBody" name="emailBody">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Motor:</label>
+      <div class="flex items-center">
+        <input class="mr-2 leading-tight" type="radio" id="motor-open" name="motor" value="masculino" [(ngModel)]="motor">
+        <label class="text-sm" for="genero-masculino">Open AI</label>
+      </div>
+      <div class="flex items-center">
+        <input class="mr-2 leading-tight" type="radio" id="motor-google" name="motor" value="femenino" [(ngModel)]="motor">
+        <label class="text-sm" for="genero-femenino">Google</label>
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Send</button>
+    </div>
+  
+    
+    <div *ngIf="loading" class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
+    
+  
+    <div *ngIf="apiResponse" class="text-center">
+      <label *ngIf="!errorResponse" class="block text-gray-700 text-sm font-bold mb-2">Action Items:</label>
+      <label *ngIf="errorResponse" class="block text-gray-700 text-sm font-bold mb-2">Error/spam</label>
+    
+      <div class="text-xl leading-8 font-medium max-w-full mx-auto">
+        <div [innerHTML]="apiResponse"></div>
+      </div>
+    </div>
+    
+  </div>
+</form>
+  
+  
+  
